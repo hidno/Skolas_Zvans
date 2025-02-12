@@ -21,8 +21,7 @@ def back(event):
     logs.withdraw()
  
 atpakaļ_koordinātes = [(0, loga_augstums * 0.725),(loga_platums * 0.35, loga_augstums * 0.725),(loga_platums * 0.39, loga_augstums * 0.8),(loga_platums * 0.35, loga_augstums * 0.875),(0, loga_augstums * 0.875)]
-atpakaļ = canvas.create_polygon(0, 575, 450, 575, 500, 640, 450, 700, 0, 700, fill="#7A2222")
+atpakaļ_poga = canvas.create_polygon(atpakaļ_koordinātes, fill="#4A0A0A")
 canvas.create_text(loga_platums * 0.175, loga_augstums * 0.8, text="Atpakaļ", font=(Mina, 50), fill="white")
-canvas.tag_bind(atpakaļ, '<Button-1>', back)
-
+canvas.tag_bind(atpakaļ_poga, '<Button-1>', back)
 logs.mainloop()
