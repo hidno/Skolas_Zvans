@@ -16,7 +16,7 @@ def lādē(file):
     img = img.convert('RGB')
     return img
 
-pulksteņa_att = lādē(r"C:\Users\Hidno\Documents\Prog\Proj\clock_p.png")
+pulksteņa_att = lādē(r"C:\Users\Hidno\Documents\Prog\Skolas_Zvans\Proj\clock_p.png")
 pulksteņa_att = pulksteņa_att.resize((350, 350))
 
 pulksteņa_att_tk = ImageTk.PhotoImage(pulksteņa_att)
