@@ -18,7 +18,7 @@ os.chdir(r"C:\Users\Hidno\Documents\Prog\Skolas_Zvans\Proj")
 
 def back(event):
     subprocess.Popen(['python', 'Skolas_Zvans.py'])
-    logs.destroy()
+    logs.withdraw()
  
 atpakaļ_koordinātes = [(0, loga_augstums * 0.725),(loga_platums * 0.35, loga_augstums * 0.725),(loga_platums * 0.39, loga_augstums * 0.8),(loga_platums * 0.35, loga_augstums * 0.875),(0, loga_augstums * 0.875)]
 atpakaļ = canvas.create_polygon(0, 575, 450, 575, 500, 640, 450, 700, 0, 700, fill="#7A2222")
