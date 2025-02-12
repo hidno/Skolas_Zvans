@@ -24,4 +24,23 @@ atpakaļ_koordinātes = [(0, loga_augstums * 0.725),(loga_platums * 0.35, loga_a
 atpakaļ_poga = canvas.create_polygon(atpakaļ_koordinātes, fill="#4A0A0A")
 canvas.create_text(loga_platums * 0.175, loga_augstums * 0.8, text="Atpakaļ", font=(Mina, 50), fill="white")
 canvas.tag_bind(atpakaļ_poga, '<Button-1>', back)
+
+kvadrāts_koordinātes = [(0, 0),(loga_platums, 0),(loga_platums, loga_augstums * 0.25),(0, loga_augstums * 0.25)]
+kvadrāts = canvas.create_polygon(kvadrāts_koordinātes, fill="#4A0A0A")
+canvas.create_text(loga_platums / 2, loga_augstums * 0.125, text="Iestatījumi", font=(Mina,70), fill="white")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 logs.mainloop()
