@@ -13,7 +13,7 @@ canvas.pack(fill=tk.BOTH, expand=True)
 
 def lādē(file):
     img = Image.open(file)
-    img = img.convert('RGB')
+    img = img.convert('RGBA')  
     return img
 
 pulksteņa_att = lādē(r"C:\Users\Hidno\Documents\Prog\Skolas_Zvans\Proj\clock_p.png")
