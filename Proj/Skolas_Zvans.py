@@ -39,7 +39,7 @@ canvas.create_text(loga_platums * 0.225, loga_augstums * 0.6, text="Sākt Spēli
 canvas.tag_bind(sākt, '<Button-1>', start_game)
 
 def settings():
-    print("Iestatījumi")
+    subprocess.Popen(['python','Iestatījumi.py'])
 
 iestatīt_koordinātes = [(0, loga_augstums * 0.725),(loga_platums * 0.35, loga_augstums * 0.725),(loga_platums * 0.39, loga_augstums * 0.8),(loga_platums * 0.35, loga_augstums * 0.875),(0, loga_augstums * 0.875)]
 iestatīt = canvas.create_polygon(iestatīt_koordinātes, fill="#4A0A0A")
