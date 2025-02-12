@@ -6,6 +6,8 @@ import tkinter.font as tkFont
 logs = tk.Tk()
 logs.title("Skolas Zvans")
 logs.state('zoomed')  
+loga_augstums = logs.winfo_screenheight()
+loga_platums = logs.winfo_screenwidth()
 logs.configure(bg="#E7E2E2")
 
 canvas = tk.Canvas(logs, bg="#E7E2E2")
@@ -17,13 +19,14 @@ def lādē(file):
     return img
 
 pulksteņa_att = lādē(r"C:\Users\Hidno\Documents\Prog\Skolas_Zvans\Proj\clock_p.png")
-pulksteņa_att = pulksteņa_att.resize((350, 350))
+pulksteņa_att = pulksteņa_att.resize((400, 400))
 
 pulksteņa_att_tk = ImageTk.PhotoImage(pulksteņa_att)
 
+
 foto1_lokācija = tk.Label(logs, image=pulksteņa_att_tk, bg="#E7E2E2")
 foto1_lokācija.image = pulksteņa_att_tk 
-foto1_lokācija.place(x=640, y=10)
+foto1_lokācija.place(x=((loga_platums-400)//2), y=0)
 
 Mina = tkFont.Font(family="Mina", size=20)
 
