@@ -24,18 +24,20 @@ def lādē(file):
 def next(event):
     print("Turpināt")
 
-skola_att = lādē("skool.png")
-skola_att = skola_att.resize((640, 360))
-skola_att_tk = ImageTk.PhotoImage(skola_att)
-skola_lokācija = tk.Label(canvas, image=skola_att_tk, bg="#87ceeb")
-skola_lokācija.image = skola_att_tk 
-skola_lokācija.place(x=((loga_platums-640)//2), y=loga_augstums*0.603 -360)
-
 kvadrāts_koordinātes = [(0, loga_augstums*0.6), (loga_platums, loga_augstums*0.6), (loga_platums, loga_augstums), (0, loga_augstums)]
 kvadrāts = canvas.create_polygon(kvadrāts_koordinātes, fill="#345f3b")
 
-kvadrāts1_koordinātes = [(loga_platums*0.48, loga_augstums*0.6), (loga_platums*0.52, loga_augstums*0.6), (loga_platums*0.52, loga_augstums), (loga_platums*0.48, loga_augstums)]
-kvadrāts1 = canvas.create_polygon(kvadrāts1_koordinātes, fill="#e1ddbf")
+skola_att = lādē("skool.png")
+skola_att = skola_att.resize((960, 520))
+skola_att_tk = ImageTk.PhotoImage(skola_att)
+canvas.create_image((loga_platums-960)//2, loga_augstums*0.63 -520, image=skola_att_tk, anchor=tk.NW)
+
+kvadrāts1_koordinātes = [(loga_platums*0.46, loga_augstums*0.63), (loga_platums*0.53, loga_augstums*0.63), (loga_platums*0.53, loga_augstums), (loga_platums*0.46, loga_augstums)]
+kvadrāts1 = canvas.create_polygon(kvadrāts1_koordinātes, fill="#e1ddbf", width=2)
+
+kvadrāts2_koordinātes = [(0, 0), (loga_platums * 0.2, 0), (loga_platums * 0.2, loga_augstums * 0.15), (0, loga_augstums * 0.15)]
+kvadrāts2 = canvas.create_polygon(kvadrāts2_koordinātes, fill="#8ea2b1")
+canvas.create_text(loga_platums * 0.1, loga_augstums * 0.075, text="Turpināt", font=(Mina, 50), fill="white")
 
 Turpināt_koordinātes = [(loga_platums * 0.75, loga_augstums*0.725), (loga_platums* 0.95, loga_augstums*0.725), (loga_platums*0.95,loga_augstums* 0.875), (loga_platums *0.75, loga_augstums* 0.875)]
 turpināt_poga = canvas.create_polygon(Turpināt_koordinātes, fill="#7A2222")
