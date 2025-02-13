@@ -30,8 +30,9 @@ foto1_lokācija.place(x=((loga_platums-400)//2), y=0)
 
 Mina = tkFont.Font(family="Mina", size=20)
 
-def start_game():
-    print("Sākt Spēli")
+def start_game(event):
+    subprocess.Popen(['python', 'Zvans1.py'])
+    logs.withdraw()
 
 sākt_koordinātes = [(0, loga_augstums * 0.5),(loga_platums * 0.45, loga_augstums * 0.5),(loga_platums * 0.49, loga_augstums * 0.6),(loga_platums * 0.45, loga_augstums * 0.7),(0, loga_augstums * 0.7)]
 sākt_poga = canvas.create_polygon(sākt_koordinātes, fill="#7A2222")
