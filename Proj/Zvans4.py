@@ -2,6 +2,7 @@ import tkinter as tk
 from PIL import Image, ImageTk
 import tkinter.font as tkFont
 import os, json, subprocess
+from datetime import datetime, timedelta
 
 logs = tk.Tk()
 logs.title("Skolas Zvans")
@@ -24,14 +25,21 @@ def lādē(file):
 with open('dati.json', 'r') as file:
     data = json.load(file)
 
+with open('dienas_laiks.txt', 'r') as file:
+    laiks = file.read()
+
 stundu_intervāls = data.get("stundu_intervals", "")
-dienas_sākums = data.get("dienas_sakums", "")
+
+def formula():
+    laika_formāts = "%H:%M"  
+    start = datetime.strptime(laiks, laika_formāts)
+    minūtes = int(stundu_intervāls.split()[0])  
+    rēķins = start + timedelta(minutes=minūtes)
+    with open('dienas_laiks.txt', 'w') as file:
+        file.write(rēķins.strftime(laika_formāts))
 
 dienas_beigas = data.get("dienas_beigas", "")
 def next(event):
-    laiks = dienas_sākums + stundu_intervāls
-    with open('dienas_laiks.txt', 'w') as file:
-        file.write(laiks)
     if dienas_beigas in ["15:30", "16:00", "16:30", "17:00", "17:30", "18:00"]:
         subprocess.Popen(['python', 'Skolas_Zvans.py'])
         logs.withdraw()
@@ -50,6 +58,7 @@ canvas.create_image((loga_platums-960)//2, loga_augstums*0.63 -520, image=skola_
 kvadrāts1_koordinātes = [(loga_platums*0.46, loga_augstums*0.63), (loga_platums*0.53, loga_augstums*0.63), (loga_platums*0.53, loga_augstums), (loga_platums*0.46, loga_augstums)]
 kvadrāts1 = canvas.create_polygon(kvadrāts1_koordinātes, fill="#e1ddbf", width=2)
 
+formula()
 with open('dienas_laiks.txt', 'r') as file:
     laiks = file.read()
 kvadrāts2_koordinātes = [(0, 0), (loga_platums * 0.2, 0), (loga_platums * 0.2, loga_augstums * 0.15), (0, loga_augstums * 0.15)]
