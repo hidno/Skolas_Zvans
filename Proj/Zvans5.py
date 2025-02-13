@@ -29,6 +29,7 @@ with open('dienas_laiks.txt', 'r') as file:
     laiks = file.read()
 
 stundu_intervāls = data.get("stundu_intervals", "")
+laika_formāts = "%H:%M"  
 
 def next(event):
     subprocess.Popen(['python', 'Skolas_Zvans.py'])
@@ -38,7 +39,6 @@ kvadrāts_koordinātes = [(0, loga_augstums*0.6), (loga_platums, loga_augstums*0
 kvadrāts = canvas.create_polygon(kvadrāts_koordinātes, fill="#345f3b")
 
 def formula():
-    laika_formāts = "%H:%M"  
     start = datetime.strptime(laiks, laika_formāts)
     minūtes = int(stundu_intervāls.split()[0])  
     rēķins = start + timedelta(minutes=minūtes)

@@ -29,23 +29,14 @@ with open('dienas_laiks.txt', 'r') as file:
     laiks = file.read()
 
 stundu_intervāls = data.get("stundu_intervals", "")
+laika_formāts = "%H:%M"  
 
-def formula():
-    laika_formāts = "%H:%M"  
+def formula(): 
     start = datetime.strptime(laiks, laika_formāts)
     minūtes = int(stundu_intervāls.split()[0])  
     rēķins = start + timedelta(minutes=minūtes)
     with open('dienas_laiks.txt', 'w') as file:
         file.write(rēķins.strftime(laika_formāts))
-
-dienas_beigas = data.get("dienas_beigas", "")
-def next(event):
-    if dienas_beigas in ["15:30", "16:00", "16:30", "17:00", "17:30", "18:00"]:
-        subprocess.Popen(['python', 'Skolas_Zvans.py'])
-        logs.withdraw()
-    else:
-        subprocess.Popen(['python', 'Zvans5.py'])
-        logs.withdraw()
 
 kvadrāts_koordinātes = [(0, loga_augstums*0.6), (loga_platums, loga_augstums*0.6), (loga_platums, loga_augstums), (0, loga_augstums)]
 kvadrāts = canvas.create_polygon(kvadrāts_koordinātes, fill="#345f3b")
@@ -64,6 +55,17 @@ with open('dienas_laiks.txt', 'r') as file:
 kvadrāts2_koordinātes = [(0, 0), (loga_platums * 0.2, 0), (loga_platums * 0.2, loga_augstums * 0.15), (0, loga_augstums * 0.15)]
 kvadrāts2 = canvas.create_polygon(kvadrāts2_koordinātes, fill="#6d7c95")
 canvas.create_text(loga_platums * 0.1, loga_augstums * 0.075, text=laiks, font=(Mina, 50), fill="white")
+
+dienas_beigas = data.get("dienas_beigas", "")
+def next(event):
+    laiks_tagad = datetime.strptime(laiks, laika_formāts)
+    dienas_beigas_laiks = datetime.strptime(dienas_beigas, laika_formāts)
+    if laiks_tagad >= dienas_beigas_laiks:
+        subprocess.Popen(['python', 'Skolas_Zvans.py'])
+        logs.withdraw()
+    else:
+        subprocess.Popen(['python', 'Zvans5.py'])
+        logs.withdraw()
 
 Turpināt_koordinātes = [(loga_platums * 0.75, loga_augstums*0.725), (loga_platums* 0.95, loga_augstums*0.725), (loga_platums*0.95,loga_augstums* 0.875), (loga_platums *0.75, loga_augstums* 0.875)]
 turpināt_poga = canvas.create_polygon(Turpināt_koordinātes, fill="#7A2222")
