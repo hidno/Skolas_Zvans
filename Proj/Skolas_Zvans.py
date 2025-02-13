@@ -34,7 +34,7 @@ def start_game(event):
 
 sākt_koordinātes = [(0, loga_augstums * 0.5),(loga_platums * 0.45, loga_augstums * 0.5),(loga_platums * 0.49, loga_augstums * 0.6),(loga_platums * 0.45, loga_augstums * 0.7),(0, loga_augstums * 0.7)]
 sākt_poga = canvas.create_polygon(sākt_koordinātes, fill="#7A2222")
-canvas.create_text(loga_platums * 0.225, loga_augstums * 0.59, text="Sākt Spēli", font=(Mina, 90), fill="white")
+canvas.create_text(loga_platums * 0.225, loga_augstums * 0.6, text="Sākt Spēli", font=(Mina, 90), fill="white")
 canvas.tag_bind(sākt_poga, '<Button-1>', start_game)
 
 def settings(event):
