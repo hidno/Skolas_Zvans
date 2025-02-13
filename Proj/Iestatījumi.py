@@ -69,5 +69,16 @@ canvas.create_text(loga_platums*0.35, loga_augstums*0.525, text="Pusdienlaiks", 
 ievade5 = tk.Entry(logs, bg="#d0c8c8", font=(Mina, 25), width=30)
 ievade5_window = canvas.create_window(loga_platums*0.45, loga_augstums*0.525,anchor="w",window=ievade5)
 
+def saglabā():
+    dienas_sakums = ievade1.get()
+    dienas_beigas = ievade2.get()
+    stundu_intervals = ievade3.get()
+    dienas_tips = ievade4.get()
+    pusdienlaiks = ievade5.get()
+
+saglabā_koordinātes = [(loga_platums * 0.75, loga_augstums*0.725), (loga_platums* 0.95, loga_augstums*0.725), (loga_platums*0.95,loga_augstums* 0.875), (loga_platums *0.75, loga_augstums* 0.875)]
+saglabā_poga = canvas.create_polygon(saglabā_koordinātes, fill="#7A2222")
+canvas.create_text(loga_platums * 0.85, loga_augstums * 0.8, text="Saglabāt", font=(Mina, 50), fill="white")
+canvas.tag_bind(saglabā_poga, '<Button-1>', saglabā)
 
 logs.mainloop()
