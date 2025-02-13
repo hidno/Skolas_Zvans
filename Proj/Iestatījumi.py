@@ -100,10 +100,10 @@ ievade5_window = canvas.create_window(loga_platums*0.45, loga_augstums*0.525,anc
 
 Starbrīžu_Ilgums = ["5 min", "10 min", "15 min", "20 min", "30 min"]
 kvadrāts6_koordinātes = [(loga_platums * 0.25, loga_augstums * 0.555), (loga_platums * 0.45, loga_augstums * 0.555), (loga_platums * 0.45, loga_augstums * 0.595), (loga_platums * 0.25, loga_augstums * 0.595)]
-kvadrāts6 = canvas.create_polygon(kvadrāts5_koordinātes, fill="#4A0A0A")
-canvas.create_text(loga_platums*0.35, loga_augstums*0.525, text="Starbrīžu Garums", font=(Mina, 25), fill="white")
+kvadrāts6 = canvas.create_polygon(kvadrāts6_koordinātes, fill="#4A0A0A")
+canvas.create_text(loga_platums*0.35, loga_augstums*0.575, text="Starbrīžu Garums", font=(Mina, 25), fill="white")
 ievade6 = ttk.Combobox(logs, values=Starbrīžu_Ilgums, background="#d0c8c8", font=(Mina, 25), width=30)
-ievade6_window = canvas.create_window(loga_platums*0.45, loga_augstums*0.525,anchor="w",window=ievade6)
+ievade6_window = canvas.create_window(loga_platums*0.45, loga_augstums*0.575,anchor="w",window=ievade6)
 
 
 

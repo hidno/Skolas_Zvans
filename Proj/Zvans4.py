@@ -34,10 +34,11 @@ dienas_tips = data.get("dienas_tips", "")
 starbrīžu_garums = data.get("starbrīžu_garums", "")
 laika_formāts = "%H:%M"  
 
-def formula(): 
+def formula():
     start = datetime.strptime(laiks, laika_formāts)
     minūtes = int(stundu_intervāls.split()[0])  
-    rēķins = start + timedelta(minutes=minūtes)
+    starbrīdis = int(data.get('starbrīžu_garums', "0").split()[0])
+    rēķins = start + timedelta(minutes=minūtes + starbrīdis)
     with open('dienas_laiks.txt', 'w') as file:
         file.write(rēķins.strftime(laika_formāts))
 
