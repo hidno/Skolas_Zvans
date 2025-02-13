@@ -21,12 +21,10 @@ def lādē(file):
 
 pulksteņa_att = lādē("clock_p.png")
 pulksteņa_att = pulksteņa_att.resize((400, 400))
-
 pulksteņa_att_tk = ImageTk.PhotoImage(pulksteņa_att)
-
-foto1_lokācija = tk.Label(logs, image=pulksteņa_att_tk, bg="#E7E2E2")
-foto1_lokācija.image = pulksteņa_att_tk 
-foto1_lokācija.place(x=((loga_platums-400)//2), y=0)
+pulksteņa_lokācija = tk.Label(logs, image=pulksteņa_att_tk, bg="#E7E2E2")
+pulksteņa_lokācija.image = pulksteņa_att_tk 
+pulksteņa_lokācija.place(x=((loga_platums-400)//2), y=0)
 
 Mina = tkFont.Font(family="Mina", size=20)
 
