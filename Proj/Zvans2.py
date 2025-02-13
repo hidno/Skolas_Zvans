@@ -28,6 +28,8 @@ with open('dati.json', 'r') as file:
 stundu_intervāls = data.get("stundu_intervals", "")
 dienas_sākums = data.get("dienas_sakums", "")
 dienas_beigas = data.get("dienas_beigas", "")
+dienas_tips = data.get("dienas_tips", "")
+starbrīžu_garums = data.get("starbrīžu_garums", "")
 laika_formāts = "%H:%M" 
 
 def formula():

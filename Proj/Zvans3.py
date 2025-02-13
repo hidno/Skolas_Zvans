@@ -30,6 +30,8 @@ with open('dienas_laiks.txt', 'r') as file:
 
 dienas_beigas = data.get("dienas_beigas", "")
 stundu_intervāls = data.get("stundu_intervals", "")
+dienas_tips = data.get("dienas_tips", "")
+starbrīžu_garums = data.get("starbrīžu_garums", "")
 laika_formāts = "%H:%M"  
 
 def formula():

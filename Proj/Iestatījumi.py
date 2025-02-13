@@ -28,6 +28,7 @@ def datu_glabā():
         ievade3.set(data.get('stundu_intervals', ''))
         ievade4.set(data.get('dienas_tips', ''))
         ievade5.set(data.get('pusdienlaiks', ''))
+        ievade6.set(data.get('starbrīžu_garums', ''))
 
 def saglabā(event=None):
     data = {
@@ -35,7 +36,8 @@ def saglabā(event=None):
         'dienas_beigas': ievade2.get(),
         'stundu_intervals': ievade3.get(),
         'dienas_tips': ievade4.get(),
-        'pusdienlaiks': ievade5.get()
+        'pusdienlaiks': ievade5.get(),
+        'starbrīžu_garums': ievade6.get()
     }
     with open('Dati.json', 'w') as file:
         json.dump(data, file)
@@ -80,7 +82,7 @@ ievade3_window = canvas.create_window(loga_platums*0.45, loga_augstums*0.425,anc
 
 
 
-Dienu_tipi = ["Parasta Diena", "Svētku Diena", "Brīvdiena", "Pirmssvētku Diena"]
+Dienu_tipi = ["Parasta Diena", "Piektdiena", "Brīvdiena", "Pirmssvētku Diena"]
 kvadrāts4_koordinātes = [(loga_platums * 0.25, loga_augstums * 0.455), (loga_platums * 0.45, loga_augstums * 0.455), (loga_platums * 0.45, loga_augstums * 0.495), (loga_platums * 0.25, loga_augstums * 0.495)]
 kvadrāts4 = canvas.create_polygon(kvadrāts4_koordinātes, fill="#4A0A0A")
 canvas.create_text(loga_platums*0.35, loga_augstums*0.475, text="Dienas Tips", font=(Mina, 25), fill="white")
@@ -94,6 +96,14 @@ kvadrāts5 = canvas.create_polygon(kvadrāts5_koordinātes, fill="#4A0A0A")
 canvas.create_text(loga_platums*0.35, loga_augstums*0.525, text="Pusdienlaiks", font=(Mina, 25), fill="white")
 ievade5 = ttk.Combobox(logs, values=Pusdienlaiki, background="#d0c8c8", font=(Mina, 25), width=30)
 ievade5_window = canvas.create_window(loga_platums*0.45, loga_augstums*0.525,anchor="w",window=ievade5)
+
+
+Starbrīžu_Ilgums = ["5 min", "10 min", "15 min", "20 min", "30 min"]
+kvadrāts6_koordinātes = [(loga_platums * 0.25, loga_augstums * 0.555), (loga_platums * 0.45, loga_augstums * 0.555), (loga_platums * 0.45, loga_augstums * 0.595), (loga_platums * 0.25, loga_augstums * 0.595)]
+kvadrāts6 = canvas.create_polygon(kvadrāts5_koordinātes, fill="#4A0A0A")
+canvas.create_text(loga_platums*0.35, loga_augstums*0.525, text="Starbrīžu Garums", font=(Mina, 25), fill="white")
+ievade6 = ttk.Combobox(logs, values=Starbrīžu_Ilgums, background="#d0c8c8", font=(Mina, 25), width=30)
+ievade6_window = canvas.create_window(loga_platums*0.45, loga_augstums*0.525,anchor="w",window=ievade6)
 
 
 
