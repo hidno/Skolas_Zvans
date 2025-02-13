@@ -1,7 +1,7 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 import tkinter.font as tkFont
-import os, subprocess
+import os, subprocess, json
 
 logs = tk.Tk()
 logs.title("Skolas Zvans")
@@ -28,9 +28,21 @@ pulksteņa_lokācija.place(x=((loga_platums-400)//2), y=0)
 
 Mina = tkFont.Font(family="Mina", size=20)
 
-def start_game(event):
-    subprocess.Popen(['python', 'Zvans1.py'])
-    logs.withdraw()
+with open('dati.json', 'r') as file:
+    data = json.load(file)
+
+dienas_sākums = data.get("dienas_sakums", "")
+
+def start_game(event=None):
+    if dienas_sākums in ["7:00", "7:30", "8:00", "8:30", "9:00", "9:30"]:
+        subprocess.Popen(['python', 'Zvans1.py'])
+        logs.withdraw()
+    elif dienas_sākums in ["10:00", "10:30", "11:00", "11:30"]:
+        subprocess.Popen(['python', 'Zvans2.py'])
+        logs.withdraw()
+    else:
+        subprocess.Popen(['python', 'Zvans3.py'])
+        logs.withdraw()
 
 sākt_koordinātes = [(0, loga_augstums * 0.5),(loga_platums * 0.45, loga_augstums * 0.5),(loga_platums * 0.49, loga_augstums * 0.6),(loga_platums * 0.45, loga_augstums * 0.7),(0, loga_augstums * 0.7)]
 sākt_poga = canvas.create_polygon(sākt_koordinātes, fill="#7A2222")
