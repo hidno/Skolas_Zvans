@@ -21,9 +21,17 @@ def lādē(file):
     img = img.convert('RGBA')  
     return img
 
+with open('dati.json', 'r') as file:
+    data = json.load(file)
+
+dienas_beigas = data.get("dienas_beigas", "")
 def next(event):
-    subprocess.Popen(['python', 'Zvans5.py'])
-    logs.withdraw()
+    if dienas_beigas in ["15:30", "16:00", "16:30", "17:00", "17:30", "18:00"]:
+        subprocess.Popen(['python', 'Skolas_Zvans.py'])
+        logs.withdraw()
+    else:
+        subprocess.Popen(['python', 'Zvans5.py'])
+        logs.withdraw()
 
 kvadrāts_koordinātes = [(0, loga_augstums*0.6), (loga_platums, loga_augstums*0.6), (loga_platums, loga_augstums), (0, loga_augstums)]
 kvadrāts = canvas.create_polygon(kvadrāts_koordinātes, fill="#345f3b")
@@ -36,12 +44,8 @@ canvas.create_image((loga_platums-960)//2, loga_augstums*0.63 -520, image=skola_
 kvadrāts1_koordinātes = [(loga_platums*0.46, loga_augstums*0.63), (loga_platums*0.53, loga_augstums*0.63), (loga_platums*0.53, loga_augstums), (loga_platums*0.46, loga_augstums)]
 kvadrāts1 = canvas.create_polygon(kvadrāts1_koordinātes, fill="#e1ddbf", width=2)
 
-with open('dati.json', 'r') as file:
-    data = json.load(file)
-
 kvadrāts2_koordinātes = [(0, 0), (loga_platums * 0.2, 0), (loga_platums * 0.2, loga_augstums * 0.15), (0, loga_augstums * 0.15)]
 kvadrāts2 = canvas.create_polygon(kvadrāts2_koordinātes, fill="#8ea2b1")
-
 dienas_sākums = data.get("dienas_sakums", "")
 canvas.create_text(loga_platums * 0.1, loga_augstums * 0.075, text=dienas_sākums, font=(Mina, 50), fill="white")
 

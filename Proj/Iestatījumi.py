@@ -61,7 +61,7 @@ ievade1_window = canvas.create_window(loga_platums*0.45, loga_augstums*0.325,anc
 
 
 
-Dienu_Beigas = ["15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"]
+Dienu_Beigas = ["14:50", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"]
 kvadrāts2_koordinātes = [(loga_platums * 0.25, loga_augstums * 0.355), (loga_platums * 0.45, loga_augstums * 0.355), (loga_platums * 0.45, loga_augstums * 0.395), (loga_platums * 0.25, loga_augstums * 0.395)]
 kvadrāts2 = canvas.create_polygon(kvadrāts2_koordinātes, fill="#4A0A0A")
 canvas.create_text(loga_platums*0.35, loga_augstums*0.375, text="Dienas Beigas", font=(Mina, 25), fill="white")
