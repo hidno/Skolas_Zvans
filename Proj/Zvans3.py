@@ -9,8 +9,8 @@ logs.title("Skolas Zvans")
 logs.state('zoomed')  
 loga_augstums = logs.winfo_screenheight()
 loga_platums = logs.winfo_screenwidth()
-logs.configure(bg="#1e90ff")
-canvas = tk.Canvas(logs, bg="#1e90ff")
+logs.configure(bg="#87ceeb")
+canvas = tk.Canvas(logs, bg="#87ceeb")
 canvas.pack(fill=tk.BOTH, expand=True)
 os.chdir(r"C:\Users\Hidno\Documents\Prog\Skolas_Zvans\Proj")
 Mina = tkFont.Font(family="Mina", size=20)
@@ -43,7 +43,7 @@ formula()
 with open('dienas_laiks.txt', 'r') as file:
     laiks = file.read()
 Kvadrāts2_koordinātes = [(0, 0), (loga_platums * 0.2, 0), (loga_platums * 0.2, loga_augstums * 0.15), (0, loga_augstums * 0.15)]
-Kvadrāts2 = canvas.create_polygon(Kvadrāts2_koordinātes, fill="#5983bb")
+Kvadrāts2 = canvas.create_polygon(Kvadrāts2_koordinātes, fill="#8ea2b1")
 canvas.create_text(loga_platums * 0.1, loga_augstums * 0.075, text=laiks, font=(Mina, 50), fill="white")
 
 def next(event):
@@ -61,7 +61,7 @@ def next(event):
         logs.withdraw()
 
 
-        
+
 Kvadrāts_koordinātes = [(0, loga_augstums*0.6), (loga_platums, loga_augstums*0.6), (loga_platums, loga_augstums), (0, loga_augstums)]
 Kvadrāts = canvas.create_polygon(Kvadrāts_koordinātes, fill="#345f3b")
 

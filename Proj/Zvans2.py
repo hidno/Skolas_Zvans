@@ -45,12 +45,8 @@ with open('dienas_laiks.txt', 'r') as file:
 def next(event):
     laiks_tagad = datetime.strptime(laiks, laika_formāts)
     dienas_beigas_laiks = datetime.strptime(dienas_beigas, laika_formāts)
-    maiņa = datetime.strptime("12:30", "%H:%M")
     if laiks_tagad >= dienas_beigas_laiks:
         subprocess.Popen(['python', 'Skolas_Zvans.py'])
-        logs.withdraw()
-    elif laiks_tagad < maiņa:
-        subprocess.Popen(['python', 'Zvans2.py'])
         logs.withdraw()
     else:
         subprocess.Popen(['python', 'Zvans3.py'])

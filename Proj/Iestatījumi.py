@@ -9,13 +9,12 @@ logs.state('zoomed')
 loga_augstums = logs.winfo_screenheight()
 loga_platums = logs.winfo_screenwidth()
 logs.configure(bg="#E7E2E2")
-
-Mina = tkFont.Font(family="Mina", size=20)
-
 canvas = tk.Canvas(logs, bg="#E7E2E2")
 canvas.pack(fill=tk.BOTH, expand=True)
-
 os.chdir(r"C:\Users\Hidno\Documents\Prog\Skolas_Zvans\Proj")
+Mina = tkFont.Font(family="Mina", size=20)
+
+
 
 def back(event):
     subprocess.Popen(['python', 'Skolas_Zvans.py'])
@@ -40,6 +39,8 @@ def saglabā(event=None):
     }
     with open('Dati.json', 'w') as file:
         json.dump(data, file)
+
+
 
 atpakaļ_koordinātes = [(0, loga_augstums* 0.725),(loga_platums * 0.35, loga_augstums*0.725),(loga_platums*0.39, loga_augstums*0.8),(loga_platums * 0.35, loga_augstums*0.875),(0,loga_augstums*0.875)]
 atpakaļ_poga = canvas.create_polygon(atpakaļ_koordinātes, fill="#4A0A0A")

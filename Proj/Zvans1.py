@@ -8,8 +8,8 @@ logs.title("Skolas Zvans")
 logs.state('zoomed')  
 loga_augstums = logs.winfo_screenheight()
 loga_platums = logs.winfo_screenwidth()
-logs.configure(bg="#87ceeb")
-canvas = tk.Canvas(logs, bg="#87ceeb")
+logs.configure(bg="#1e90ff")
+canvas = tk.Canvas(logs, bg="#1e90ff")
 canvas.pack(fill=tk.BOTH, expand=True)
 os.chdir(r"C:\Users\Hidno\Documents\Prog\Skolas_Zvans\Proj")
 Mina = tkFont.Font(family="Mina", size=20)
@@ -44,7 +44,7 @@ Kvadrāts1_koordinātes = [(loga_platums*0.46, loga_augstums*0.63), (loga_platum
 Kvadrāts1 = canvas.create_polygon(Kvadrāts1_koordinātes, fill="#e1ddbf", width=2)
 
 Kvadrāts2_koordinātes = [(0, 0), (loga_platums * 0.2, 0), (loga_platums * 0.2, loga_augstums * 0.15), (0, loga_augstums * 0.15)]
-Kvadrāts2 = canvas.create_polygon(Kvadrāts2_koordinātes, fill="#8ea2b1")
+Kvadrāts2 = canvas.create_polygon(Kvadrāts2_koordinātes, fill="#5983bb")
 canvas.create_text(loga_platums * 0.1, loga_augstums * 0.075, text=dienas_sākums, font=(Mina, 50), fill="white")
 
 Turpināt_koordinātes = [(loga_platums * 0.75, loga_augstums*0.725), (loga_platums* 0.95, loga_augstums*0.725), (loga_platums*0.95,loga_augstums* 0.875), (loga_platums *0.75, loga_augstums* 0.875)]
