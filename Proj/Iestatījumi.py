@@ -1,4 +1,4 @@
-import os, subprocess
+import os, subprocess, json
 import tkinter as tk
 import tkinter.font as tkFont
 
@@ -19,8 +19,28 @@ os.chdir(r"C:\Users\Hidno\Documents\Prog\Skolas_Zvans\Proj")
 def back(event):
     subprocess.Popen(['python', 'Skolas_Zvans.py'])
     logs.withdraw()
- 
-atpakaļ_koordinātes = [(0, loga_augstums* 0.725),(loga_platums * 0.35, loga_augstums*0.725),(loga_platums*0.39, loga_augstums*0.8),(loga_platums*0.35, loga_augstums*0.875),(0,loga_augstums*0.875)]
+
+def datu_glabā():
+     with open('Dati.json', 'r') as file:
+        data = json.load(file)
+        ievade1.insert(0, data.get('dienas_sakums', ''))
+        ievade2.insert(0, data.get('dienas_beigas', ''))
+        ievade3.insert(0, data.get('stundu_intervals', ''))
+        ievade4.insert(0, data.get('dienas_tips', ''))
+        ievade5.insert(0, data.get('pusdienlaiks', ''))
+
+def saglabā(event=None):
+    data = {
+        'dienas_sakums': ievade1.get(),
+        'dienas_beigas': ievade2.get(),
+        'stundu_intervals': ievade3.get(),
+        'dienas_tips': ievade4.get(),
+        'pusdienlaiks': ievade5.get()
+    }
+    with open('Dati.json', 'w') as file:
+        json.dump(data, file)
+
+atpakaļ_koordinātes = [(0, loga_augstums* 0.725),(loga_platums * 0.35, loga_augstums*0.725),(loga_platums*0.39, loga_augstums*0.8),(loga_platums * 0.35, loga_augstums*0.875),(0,loga_augstums*0.875)]
 atpakaļ_poga = canvas.create_polygon(atpakaļ_koordinātes, fill="#4A0A0A")
 canvas.create_text(loga_platums * 0.175, loga_augstums * 0.8, text="Atpakaļ", font=(Mina, 50), fill="white")
 canvas.tag_bind(atpakaļ_poga, '<Button-1>', back)
@@ -69,16 +89,11 @@ canvas.create_text(loga_platums*0.35, loga_augstums*0.525, text="Pusdienlaiks", 
 ievade5 = tk.Entry(logs, bg="#d0c8c8", font=(Mina, 25), width=30)
 ievade5_window = canvas.create_window(loga_platums*0.45, loga_augstums*0.525,anchor="w",window=ievade5)
 
-def saglabā():
-    dienas_sakums = ievade1.get()
-    dienas_beigas = ievade2.get()
-    stundu_intervals = ievade3.get()
-    dienas_tips = ievade4.get()
-    pusdienlaiks = ievade5.get()
 
 saglabā_koordinātes = [(loga_platums * 0.75, loga_augstums*0.725), (loga_platums* 0.95, loga_augstums*0.725), (loga_platums*0.95,loga_augstums* 0.875), (loga_platums *0.75, loga_augstums* 0.875)]
 saglabā_poga = canvas.create_polygon(saglabā_koordinātes, fill="#7A2222")
 canvas.create_text(loga_platums * 0.85, loga_augstums * 0.8, text="Saglabāt", font=(Mina, 50), fill="white")
 canvas.tag_bind(saglabā_poga, '<Button-1>', saglabā)
 
+datu_glabā()
 logs.mainloop()
