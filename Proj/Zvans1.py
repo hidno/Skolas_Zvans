@@ -1,8 +1,7 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 import tkinter.font as tkFont
-import os
-import json
+import os, json, subprocess
 
 logs = tk.Tk()
 logs.title("Skolas Zvans")
@@ -23,7 +22,8 @@ def lādē(file):
     return img
 
 def next(event):
-    print("Turpināt")
+    subprocess.Popen(['python', 'Zvans2.py'])
+    logs.withdraw()
 
 kvadrāts_koordinātes = [(0, loga_augstums*0.6), (loga_platums, loga_augstums*0.6), (loga_platums, loga_augstums), (0, loga_augstums)]
 kvadrāts = canvas.create_polygon(kvadrāts_koordinātes, fill="#345f3b")

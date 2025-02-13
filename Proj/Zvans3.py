@@ -1,17 +1,16 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 import tkinter.font as tkFont
-import os
-import json
+import os, json, subprocess
 
 logs = tk.Tk()
 logs.title("Skolas Zvans")
 logs.state('zoomed')  
 loga_augstums = logs.winfo_screenheight()
 loga_platums = logs.winfo_screenwidth()
-logs.configure(bg="#87ceeb")
+logs.configure(bg="#1e90ff")
 
-canvas = tk.Canvas(logs, bg="#87ceeb")
+canvas = tk.Canvas(logs, bg="#1e90ff")
 canvas.pack(fill=tk.BOTH, expand=True)
 os.chdir(r"C:\Users\Hidno\Documents\Prog\Skolas_Zvans\Proj")
 
@@ -23,7 +22,8 @@ def lādē(file):
     return img
 
 def next(event):
-    print("Turpināt")
+    subprocess.Popen(['python', 'Zvans4.py'])
+    logs.withdraw()
 
 kvadrāts_koordinātes = [(0, loga_augstums*0.6), (loga_platums, loga_augstums*0.6), (loga_platums, loga_augstums), (0, loga_augstums)]
 kvadrāts = canvas.create_polygon(kvadrāts_koordinātes, fill="#345f3b")
