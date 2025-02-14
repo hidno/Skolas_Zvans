@@ -107,6 +107,16 @@ canvas.create_image((loga_platums-960)//2, loga_augstums*0.63 -520, image=skola_
 Kvadrāts1_koordinātes = [(loga_platums*0.46, loga_augstums*0.63), (loga_platums*0.53, loga_augstums*0.63), (loga_platums*0.53, loga_augstums), (loga_platums*0.46, loga_augstums)]
 Kvadrāts1 = canvas.create_polygon(Kvadrāts1_koordinātes, fill="#e1ddbf", width=2)
 
+cilveki2_att = lādē("no_skola2.png")
+cilveki2_att = cilveki2_att.resize((175, 150))
+cilveki2_att_tk = ImageTk.PhotoImage(cilveki2_att)
+canvas.create_image((loga_platums-175)//2, loga_augstums*0.7 -150, image=cilveki2_att_tk, anchor=tk.NW)
+
+cilveki_att = lādē("no_skolas.png")
+cilveki_att = cilveki_att.resize((275, 275))
+cilveki_att_tk = ImageTk.PhotoImage(cilveki_att)
+canvas.create_image((loga_platums-275)//2, loga_augstums*0.9 -275, image=cilveki_att_tk, anchor=tk.NW)
+
 Turpināt_koordinātes = [(loga_platums * 0.75, loga_augstums*0.725), (loga_platums* 0.95, loga_augstums*0.725), (loga_platums*0.95,loga_augstums* 0.875), (loga_platums *0.75, loga_augstums* 0.875)]
 Turpināt_poga = canvas.create_polygon(Turpināt_koordinātes, fill="#7A2222")
 canvas.create_text(loga_platums * 0.85, loga_augstums * 0.8, text="Turpināt", font=(Mina, 50), fill="white")

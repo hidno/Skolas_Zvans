@@ -56,6 +56,11 @@ Kvadrāts2_koordinātes = [(0, 0), (loga_platums * 0.2, 0), (loga_platums * 0.2,
 Kvadrāts2 = canvas.create_polygon(Kvadrāts2_koordinātes, fill="#5983bb")
 canvas.create_text(loga_platums * 0.1, loga_augstums * 0.075, text=dienas_sākums, font=(Mina, 50), fill="white")
 
+cilveki_att = lādē("uz_skolu.png")
+cilveki_att = cilveki_att.resize((200, 200))
+cilveki_att_tk = ImageTk.PhotoImage(cilveki_att)
+canvas.create_image((loga_platums-200)//2, loga_augstums*0.7 -200, image=cilveki_att_tk, anchor=tk.NW)
+
 Turpināt_koordinātes = [(loga_platums * 0.75, loga_augstums*0.725), (loga_platums* 0.95, loga_augstums*0.725), (loga_platums*0.95,loga_augstums* 0.875), (loga_platums *0.75, loga_augstums* 0.875)]
 Turpināt_poga = canvas.create_polygon(Turpināt_koordinātes, fill="#7A2222")
 canvas.create_text(loga_platums * 0.85, loga_augstums * 0.8, text="Turpināt", font=(Mina, 50), fill="white")
