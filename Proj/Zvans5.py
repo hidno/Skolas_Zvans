@@ -38,6 +38,8 @@ starbrīdis = int(data.get('starbrīžu_garums', "0").split()[0])
 pusdienu_garums = int(data.get('pusdienas_garums', "0").split()[0])
 laika_formāts = "%H:%M"  
 
+if dienas_tips == "piektdiena":
+    starbrīdis/2
 
 def formula():
     Pulkstens = datetime.strptime(laiks, laika_formāts)
