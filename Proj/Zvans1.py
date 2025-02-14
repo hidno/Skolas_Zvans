@@ -1,32 +1,47 @@
-from datetime import time
 import tkinter as tk
 from PIL import Image, ImageTk
 import tkinter.font as tkFont
 import os, json, subprocess, pygame
 
+
+
+
+
 logs = tk.Tk()
 logs.title("Skolas Zvans")
 logs.state('zoomed')  
+logs.configure(bg="#1e90ff")
 loga_augstums = logs.winfo_screenheight()
 loga_platums = logs.winfo_screenwidth()
-logs.configure(bg="#1e90ff")
+
 canvas = tk.Canvas(logs, bg="#1e90ff")
 canvas.pack(fill=tk.BOTH, expand=True)
+
 os.chdir(r"C:\Users\Hidno\Documents\Prog\Skolas_Zvans\Proj")
 Mina = tkFont.Font(family="Mina", size=20)
 pygame.mixer.init()
 
 
 
-def lādē(file):
-    img = Image.open(file)
-    img = img.convert('RGBA')  
-    return img
+
 
 with open('dati.json', 'r') as file:
     data = json.load(file)
 
 dienas_sākums = data.get("dienas_sakums", "")
+dienas_beigas = data.get("dienas_beigas", "")
+
+with open('dienas_beigas.txt', "w") as file:
+    file.write(dienas_beigas)
+
+
+
+
+
+def lādē(file):
+    img = Image.open(file)
+    img = img.convert('RGBA')  
+    return img  
 
 def next(event):
     zvans_att = lādē("Zvans.png")
@@ -38,6 +53,8 @@ def next(event):
     pygame.mixer.music.play()
     subprocess.Popen(['python', 'Zvans2.py'])
     logs.withdraw()
+
+
 
 
 

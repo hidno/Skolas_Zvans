@@ -3,28 +3,35 @@ from PIL import Image, ImageTk
 import tkinter.font as tkFont
 import os, subprocess, json
 
+
+
+
+
 logs = tk.Tk()
 logs.title("Skolas Zvans")
 logs.state('zoomed')  
+logs.configure(bg="#E7E2E2")
 loga_augstums = logs.winfo_screenheight()
 loga_platums = logs.winfo_screenwidth()
-logs.configure(bg="#E7E2E2")
+
 canvas = tk.Canvas(logs, bg="#E7E2E2")
 canvas.pack(fill=tk.BOTH, expand=True)
+
 os.chdir(r"C:\Users\Hidno\Documents\Prog\Skolas_Zvans\Proj")
 Mina = tkFont.Font(family="Mina", size=20)
 
 
 
-def lādē(file):
-    img = Image.open(file)
-    img = img.convert('RGBA')  
-    return img
+
 
 with open('dati.json', 'r') as file:
     data = json.load(file)
 
 dienas_sākums = data.get("dienas_sakums", "")
+
+
+
+
 
 def start_game(event=None):
     if dienas_sākums in ["7:00", "7:30", "8:00", "8:30", "9:00", "9:30"]:
@@ -37,10 +44,16 @@ def start_game(event=None):
         subprocess.Popen(['python', 'Zvans3.py'])
         logs.withdraw()
 
+
 def settings(event):
     subprocess.Popen(['python', 'Iestatījumi.py'])
     logs.withdraw()
 
+
+def lādē(file):
+    img = Image.open(file)
+    img = img.convert('RGBA')  
+    return img
 
 
 pulksteņa_att = lādē("clock_p.png")

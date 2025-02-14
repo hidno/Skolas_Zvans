@@ -1,26 +1,30 @@
+from datetime import datetime, timedelta
 import tkinter as tk
 from PIL import Image, ImageTk
 import tkinter.font as tkFont
 import os, json, subprocess, pygame
-from datetime import datetime, time, timedelta
+
+
+
+
 
 logs = tk.Tk()
 logs.title("Skolas Zvans")
 logs.state('zoomed')  
+logs.configure(bg="#1e90ff")
 loga_augstums = logs.winfo_screenheight()
 loga_platums = logs.winfo_screenwidth()
-logs.configure(bg="#87ceeb")
-canvas = tk.Canvas(logs, bg="#87ceeb")
+
+canvas = tk.Canvas(logs, bg="#1e90ff")
 canvas.pack(fill=tk.BOTH, expand=True)
+
 os.chdir(r"C:\Users\Hidno\Documents\Prog\Skolas_Zvans\Proj")
 Mina = tkFont.Font(family="Mina", size=20)
 pygame.mixer.init()
 
 
-def lādē(file):
-    img = Image.open(file)
-    img = img.convert('RGBA')  
-    return img
+
+
 
 with open('dati.json', 'r') as file:
     data = json.load(file)
@@ -28,42 +32,72 @@ with open('dati.json', 'r') as file:
 with open('dienas_laiks.txt', 'r') as file:
     laiks = file.read()
 
-dienas_beigas = data.get("dienas_beigas", "")
+with open('dienas_beigas.txt', 'r') as file:
+    dienas_beigas = file.read()
+
 stundu_intervāls = data.get("stundu_intervals", "")
 dienas_tips = data.get("dienas_tips", "")
 starbrīžu_garums = data.get("starbrīžu_garums", "")
 pusdienlaiks = data.get("pusdienlaiks", "")
 pusdienas_garums = data.get("pusdienas_garums", "")
-starbrīdis = int(data.get('starbrīžu_garums', "0").split()[0])
-pusdienu_garums = int(data.get('pusdienas_garums', "0").split()[0])
-laika_formāts = "%H:%M"  
 
-if dienas_tips == "piektdiena":
-    starbrīdis/2
+laika_formāts = "%H:%M"
+
+starbrīžu_garums = int(data.get('starbrīžu_garums', "0").split()[0])
+pusdienas_garums = int(data.get('pusdienas_garums', "0").split()[0])
+stundu_intervāls = int(data.get('stundu_intervals', "0").split()[0])
+
+dienas_beigas = datetime.strptime(dienas_beigas, laika_formāts)
+starbrīžu_garums = datetime.strptime('starbrīžu_garums', laika_formāts)
+pusdienlaiks = datetime.strptime(pusdienlaiks, laika_formāts)
+
+
+
+
+
+if dienas_tips == "Piektdiena":
+    starbrīžu_garums = starbrīžu_garums // 2  
+    dienas_beigas = dienas_beigas - timedelta(minutes=starbrīžu_garums)  
+    dienas_beigas = dienas_beigas.strftime(laika_formāts)
+
+    with open('dienas_beigas.txt', "w") as file:
+        file.write(dienas_beigas)
+
+
+
+
 
 def formula():
-    Pulkstens = datetime.strptime(laiks, laika_formāts)
-    Pusdienas = datetime.strptime(pusdienlaiks, laika_formāts)
-    minūtes = int(stundu_intervāls.split()[0])  
-    if Pulkstens >= Pusdienas:
-        rēķins = Pulkstens + timedelta(minutes=minūtes + pusdienu_garums + starbrīdis)
+    laiks = datetime.strptime(laiks, laika_formāts)
+    stundu_intervāls = int(stundu_intervāls.split()[0])  
+    if laiks >= pusdienlaiks:
+        laiks = laiks + timedelta(stundu_intervals=stundu_intervāls + pusdienas_garums + starbrīžu_garums)
     else:
-        rēķins = Pulkstens + timedelta(minutes=minūtes + starbrīdis)
-    with open('dienas_laiks.txt', 'w') as file:
-        file.write(rēķins.strftime(laika_formāts))
+        laiks = laiks + timedelta(stundu_intervals=stundu_intervāls + starbrīžu_garums)
 
-formula()
+    with open('dienas_laiks.txt', 'w') as file:
+        file.write(laiks.strftime(laika_formāts))
+
+
+
+
+
+def lādē(file):
+    img = Image.open(file)
+    img = img.convert('RGBA')  
+    return img
+
+with open('dienas_beigas.txt', 'r') as file:
+    dienas_beigas = file.read()
+
 with open('dienas_laiks.txt', 'r') as file:
     laiks = file.read()
-Kvadrāts2_koordinātes = [(0, 0), (loga_platums * 0.2, 0), (loga_platums * 0.2, loga_augstums * 0.15), (0, loga_augstums * 0.15)]
-Kvadrāts2 = canvas.create_polygon(Kvadrāts2_koordinātes, fill="#8ea2b1")
-canvas.create_text(loga_platums * 0.1, loga_augstums * 0.075, text=laiks, font=(Mina, 50), fill="white")
 
 def next(event):
-    laiks_tagad = datetime.strptime(laiks, laika_formāts)
-    dienas_beigas_laiks = datetime.strptime(dienas_beigas, laika_formāts)
+    laiks = datetime.strptime(laiks, laika_formāts)
+    dienas_beigas = datetime.strptime(dienas_beigas, laika_formāts)
     maiņa = datetime.strptime("15:30", "%H:%M")
-    if laiks_tagad >= dienas_beigas_laiks:
+    if laiks >= dienas_beigas:
         zvans_att = lādē("Zvans.png")
         zvans_att = zvans_att.resize((800, 800))  
         zvans_tk = ImageTk.PhotoImage(zvans_att)
@@ -74,7 +108,7 @@ def next(event):
         
         subprocess.Popen(['python', 'Skolas_Zvans.py'])
         logs.withdraw()
-    elif laiks_tagad < maiņa:
+    elif laiks < maiņa:
         zvans_att = lādē("Zvans.png")
         zvans_att = zvans_att.resize((800, 800))  
         zvans_tk = ImageTk.PhotoImage(zvans_att)
@@ -99,6 +133,8 @@ def next(event):
 
 
 
+
+
 Kvadrāts_koordinātes = [(0, loga_augstums*0.6), (loga_platums, loga_augstums*0.6), (loga_platums, loga_augstums), (0, loga_augstums)]
 Kvadrāts = canvas.create_polygon(Kvadrāts_koordinātes, fill="#345f3b")
 
@@ -109,6 +145,10 @@ canvas.create_image((loga_platums-960)//2, loga_augstums*0.63 -520, image=skola_
 
 Kvadrāts1_koordinātes = [(loga_platums*0.46, loga_augstums*0.63), (loga_platums*0.53, loga_augstums*0.63), (loga_platums*0.53, loga_augstums), (loga_platums*0.46, loga_augstums)]
 Kvadrāts1 = canvas.create_polygon(Kvadrāts1_koordinātes, fill="#e1ddbf", width=2)
+
+Kvadrāts2_koordinātes = [(0, 0), (loga_platums * 0.2, 0), (loga_platums * 0.2, loga_augstums * 0.15), (0, loga_augstums * 0.15)]
+Kvadrāts2 = canvas.create_polygon(Kvadrāts2_koordinātes, fill="#8ea2b1")
+canvas.create_text(loga_platums * 0.1, loga_augstums * 0.075, text=laiks, font=(Mina, 50), fill="white")
 
 cilveki_att = lādē("pauze.png")
 cilveki_att = cilveki_att.resize((422, 240))

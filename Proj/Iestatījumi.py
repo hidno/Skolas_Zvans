@@ -3,16 +3,24 @@ import tkinter as tk
 import tkinter.font as tkFont
 from tkinter import ttk
 
+
+
+
+
 logs = tk.Tk()
 logs.title("Iestatījumi")
 logs.state('zoomed')  
+logs.configure(bg="#E7E2E2")
 loga_augstums = logs.winfo_screenheight()
 loga_platums = logs.winfo_screenwidth()
-logs.configure(bg="#E7E2E2")
+
 canvas = tk.Canvas(logs, bg="#E7E2E2")
 canvas.pack(fill=tk.BOTH, expand=True)
+
 os.chdir(r"C:\Users\Hidno\Documents\Prog\Skolas_Zvans\Proj")
 Mina = tkFont.Font(family="Mina", size=20)
+
+
 
 
 
