@@ -1,8 +1,8 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 import tkinter.font as tkFont
-import os, json, subprocess
-from datetime import datetime, timedelta
+import os, json, subprocess, pygame
+from datetime import datetime, time, timedelta
 
 logs = tk.Tk()
 logs.title("Skolas Zvans")
@@ -14,7 +14,7 @@ canvas = tk.Canvas(logs, bg="#00bfff")
 canvas.pack(fill=tk.BOTH, expand=True)
 os.chdir(r"C:\Users\Hidno\Documents\Prog\Skolas_Zvans\Proj")
 Mina = tkFont.Font(family="Mina", size=20)
-
+pygame.mixer.init()
 
 
 def lādē(file):
@@ -56,9 +56,25 @@ def next(event):
     laiks_tagad = datetime.strptime(laiks, laika_formāts)
     dienas_beigas_laiks = datetime.strptime(dienas_beigas, laika_formāts)
     if laiks_tagad >= dienas_beigas_laiks:
+        zvans_att = lādē("Zvans.png")
+        zvans_att = zvans_att.resize((800, 800))  
+        zvans_tk = ImageTk.PhotoImage(zvans_att)
+        canvas.create_image(loga_platums// 2, loga_augstums// 2, image=zvans_tk)
+        logs.update()
+        pygame.mixer.music.load("Zvana_Audio.mp3")
+        pygame.mixer.music.play()
+        time.sleep(3)
         subprocess.Popen(['python', 'Skolas_Zvans.py'])
         logs.withdraw()
     else:
+        zvans_att = lādē("Zvans.png")
+        zvans_att = zvans_att.resize((800, 800))  
+        zvans_tk = ImageTk.PhotoImage(zvans_att)
+        canvas.create_image(loga_platums// 2, loga_augstums// 2, image=zvans_tk)
+        logs.update()
+        pygame.mixer.music.load("Zvana_Audio.mp3")
+        pygame.mixer.music.play()
+        time.sleep(3)
         subprocess.Popen(['python', 'Zvans3.py'])
         logs.withdraw()
 

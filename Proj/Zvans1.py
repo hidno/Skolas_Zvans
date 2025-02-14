@@ -1,7 +1,8 @@
+from datetime import time
 import tkinter as tk
 from PIL import Image, ImageTk
 import tkinter.font as tkFont
-import os, json, subprocess
+import os, json, subprocess, pygame
 
 logs = tk.Tk()
 logs.title("Skolas Zvans")
@@ -13,6 +14,7 @@ canvas = tk.Canvas(logs, bg="#1e90ff")
 canvas.pack(fill=tk.BOTH, expand=True)
 os.chdir(r"C:\Users\Hidno\Documents\Prog\Skolas_Zvans\Proj")
 Mina = tkFont.Font(family="Mina", size=20)
+pygame.mixer.init()
 
 
 
@@ -27,6 +29,14 @@ with open('dati.json', 'r') as file:
 dienas_sākums = data.get("dienas_sakums", "")
 
 def next(event):
+    zvans_att = lādē("Zvans.png")
+    zvans_att = zvans_att.resize((800, 800))  
+    zvans_tk = ImageTk.PhotoImage(zvans_att)
+    canvas.create_image(loga_platums// 2, loga_augstums// 2, image=zvans_tk)
+    logs.update()
+    pygame.mixer.music.load("Zvana_Audio.mp3")
+    pygame.mixer.music.play()
+    time.sleep(3)
     subprocess.Popen(['python', 'Zvans2.py'])
     logs.withdraw()
 
