@@ -63,7 +63,7 @@ def next(event):
         logs.update()
         pygame.mixer.music.load("Zvana_Audio.mp3")
         pygame.mixer.music.play()
-        time.sleep(3)
+        
         subprocess.Popen(['python', 'Skolas_Zvans.py'])
         logs.withdraw()
     else:
@@ -74,7 +74,7 @@ def next(event):
         logs.update()
         pygame.mixer.music.load("Zvana_Audio.mp3")
         pygame.mixer.music.play()
-        time.sleep(3)
+        
         subprocess.Popen(['python', 'Zvans3.py'])
         logs.withdraw()
 
