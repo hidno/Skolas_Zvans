@@ -32,13 +32,20 @@ dienas_beigas = data.get("dienas_beigas", "")
 stundu_intervāls = data.get("stundu_intervals", "")
 dienas_tips = data.get("dienas_tips", "")
 starbrīžu_garums = data.get("starbrīžu_garums", "")
+pusdienlaiks = data.get("pusdienlaiks", "")
+pusdienas_garums = data.get("pusdienas_garums", "")
+starbrīdis = int(data.get('starbrīžu_garums', "0").split()[0])
+pusdienu_garums = int(data.get('pusdienas_garums', "0").split()[0])
 laika_formāts = "%H:%M"  
 
 def formula():
-    start = datetime.strptime(laiks, laika_formāts)
+    Pulkstens = datetime.strptime(laiks, laika_formāts)
+    Pusdienas = datetime.strptime(pusdienlaiks, laika_formāts)
     minūtes = int(stundu_intervāls.split()[0])  
-    starbrīdis = int(data.get('starbrīžu_garums', "0").split()[0])
-    rēķins = start + timedelta(minutes=minūtes + starbrīdis)
+    if Pulkstens >= Pusdienas:
+        rēķins = Pulkstens + timedelta(minutes=minūtes + pusdienu_garums + starbrīdis) 
+    else:
+        rēķins = Pulkstens + timedelta(minutes=minūtes + starbrīdis)
     with open('dienas_laiks.txt', 'w') as file:
         file.write(rēķins.strftime(laika_formāts))
 

@@ -30,14 +30,21 @@ dienas_sākums = data.get("dienas_sakums", "")
 dienas_beigas = data.get("dienas_beigas", "")
 dienas_tips = data.get("dienas_tips", "")
 starbrīžu_garums = data.get("starbrīžu_garums", "")
+pusdienlaiks = data.get("pusdienlaiks", "")
+pusdienas_garums = data.get("pusdienas_garums", "")
+starbrīdis = int(data.get('starbrīžu_garums', "0").split()[0])
+pusdienu_garums = int(data.get('pusdienas_garums', "0").split()[0])
 laika_formāts = "%H:%M" 
 
 def formula():
     laika_formāts = "%H:%M"  
-    start = datetime.strptime(dienas_sākums, laika_formāts)
+    Pulkstens = datetime.strptime(dienas_sākums, laika_formāts)
+    Pusdienas = datetime.strptime(pusdienlaiks, laika_formāts)
     minūtes = int(stundu_intervāls.split()[0])  
-    starbrīdis = int(data.get('starbrīžu_garums', "0").split()[0])
-    rēķins = start + timedelta(minutes=minūtes + starbrīdis)
+    if Pulkstens >= Pusdienas:
+        rēķins = Pulkstens + timedelta(minutes=minūtes + pusdienu_garums + starbrīdis)
+    else:
+        rēķins = Pulkstens + timedelta(minutes=minūtes + starbrīdis)
     with open('dienas_laiks.txt', 'w') as file:
         file.write(rēķins.strftime(laika_formāts))
 
@@ -55,7 +62,7 @@ def next(event):
         subprocess.Popen(['python', 'Zvans3.py'])
         logs.withdraw()
 
-
+        
 
 Kvadrāts_koordinātes = [(0, loga_augstums*0.6), (loga_platums, loga_augstums*0.6), (loga_platums, loga_augstums), (0, loga_augstums)]
 Kvadrāts = canvas.create_polygon(Kvadrāts_koordinātes, fill="#345f3b")
