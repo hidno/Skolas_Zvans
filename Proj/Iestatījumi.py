@@ -17,7 +17,8 @@ loga_platums = logs.winfo_screenwidth()
 canvas = tk.Canvas(logs, bg="#E7E2E2")
 canvas.pack(fill=tk.BOTH, expand=True)
 
-os.chdir(r"C:\Users\Hidno\Documents\Prog\Skolas_Zvans\Proj")
+projekta_ceļš = os.path.join(os.path.expanduser("~"), "Documents","Proj","Skolas_Zvans","Proj")
+os.chdir(projekta_ceļš)
 Mina = tkFont.Font(family="Mina", size=20)
 
 
