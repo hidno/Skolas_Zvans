@@ -49,7 +49,6 @@ pusdienas_garums = int(data.get('pusdienas_garums', "0").split()[0])
 stundu_intervāls = int(data.get('stundu_intervals', "0").split()[0])
 
 dienas_beigas = datetime.strptime(dienas_beigas, laika_formāts)
-starbrīžu_garums = datetime.strptime('starbrīžu_garums', laika_formāts)
 pusdienlaiks = datetime.strptime(pusdienlaiks, laika_formāts)
  
 
@@ -68,16 +67,15 @@ if dienas_tips == "Piektdiena":
 
 
 
-def formula():
-    laiks = datetime.strptime(laiks, laika_formāts)
-    stundu_intervāls = int(stundu_intervāls.split()[0])  
+def formula(laiks):
+    laiks = datetime.strptime(laiks, laika_formāts)  
     if laiks >= pusdienlaiks:
-        laiks = laiks + timedelta(stundu_intervals=stundu_intervāls + pusdienas_garums + starbrīžu_garums)
+        laiks = laiks + timedelta(minutes=stundu_intervāls + pusdienas_garums + starbrīžu_garums)
     else:
-        laiks = laiks + timedelta(stundu_intervals=stundu_intervāls + starbrīžu_garums)
+        laiks = laiks + timedelta(minutes=stundu_intervāls + starbrīžu_garums)
 
     with open('dienas_laiks.txt', 'w') as file:
-        file.write(laiks.strftime(laika_formāts))
+        return file.write(laiks.strftime(laika_formāts))
 
 
 
@@ -91,13 +89,18 @@ def lādē(file):
 with open('dienas_beigas.txt', 'r') as file:
     dienas_beigas = file.read()
 
+if laiks:
+    formula(laiks)
+    with open('dienas_laiks.txt', 'r') as file:
+        laiks = file.read()
+
 with open('dienas_laiks.txt', 'r') as file:
     laiks = file.read()
 
 def next(event):
-    laiks = datetime.strptime(laiks, laika_formāts)
-    dienas_beigas = datetime.strptime(dienas_beigas, laika_formāts)
-    if laiks >= dienas_beigas:
+    laiks_n = datetime.strptime(laiks, laika_formāts)
+    dienas_beigas_n = datetime.strptime(dienas_beigas, laika_formāts)
+    if laiks_n >= dienas_beigas_n:
         zvans_att = lādē("Zvans.png")
         zvans_att = zvans_att.resize((800, 800))  
         zvans_tk = ImageTk.PhotoImage(zvans_att)
@@ -144,4 +147,4 @@ Turpināt_poga = canvas.create_polygon(Turpināt_koordinātes, fill="#7A2222")
 canvas.create_text(loga_platums * 0.85, loga_augstums * 0.8, text="Turpināt", font=(Mina, 50), fill="white")
 canvas.tag_bind(Turpināt_poga, '<Button-1>', next)
 
-logs.mainloop()
+logs.mainloop() 

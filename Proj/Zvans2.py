@@ -69,16 +69,15 @@ if dienas_tips == "Piektdiena":
 
 
 
-def formula():
-    laiks = datetime.strptime(dienas_sākums, laika_formāts)
-    stundu_intervāls = int(stundu_intervāls.split()[0])  
+def formula(laiks):
+    laiks = datetime.strptime(laiks, laika_formāts)
     if laiks >= pusdienlaiks:
-        laiks = laiks + timedelta(stundu_intervals=stundu_intervāls + pusdienas_garums + starbrīžu_garums)
+        laiks = laiks + timedelta(minutes=stundu_intervāls + pusdienas_garums + starbrīžu_garums)
     else:
-        laiks = laiks + timedelta(stundu_intervals=stundu_intervāls + starbrīžu_garums)
+        laiks = laiks + timedelta(minutes=stundu_intervāls + starbrīžu_garums)
 
     with open('dienas_laiks.txt', 'w') as file:
-        file.write(laiks.strftime(laika_formāts))
+        return file.write(laiks.strftime(laika_formāts))
 
 
 
@@ -92,13 +91,18 @@ def lādē(file):
 with open('dienas_beigas.txt', 'r') as file:
     dienas_beigas = file.read()
 
+if laiks:
+    formula(laiks)
+    with open('dienas_laiks.txt', 'r') as file:
+        laiks = file.read()
+        
 with open('dienas_laiks.txt', 'r') as file:
     laiks = file.read()
     
 def next(event):
-    laiks = datetime.strptime(laiks, laika_formāts)
-    dienas_beigas = datetime.strptime(dienas_beigas, laika_formāts)
-    if laiks >= dienas_beigas:
+    laiks_n = datetime.strptime(laiks, laika_formāts)
+    dienas_beigas_n = datetime.strptime(dienas_beigas, laika_formāts)
+    if laiks_n >= dienas_beigas_n:
         zvans_att = lādē("Zvans.png")
         zvans_att = zvans_att.resize((800, 800))  
         zvans_tk = ImageTk.PhotoImage(zvans_att)
@@ -119,7 +123,7 @@ def next(event):
         pygame.mixer.music.play()
         
         subprocess.Popen(['python', 'Zvans3.py'])
-        logs.withdraw()
+        logs.withdraw() 
 
 
 

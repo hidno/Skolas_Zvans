@@ -3,20 +3,14 @@ from PIL import Image, ImageTk
 import tkinter.font as tkFont
 import os, json, subprocess, pygame
 
-
-
-
-
 logs = tk.Tk()
 logs.title("Skolas Zvans")
 logs.state('zoomed')  
 logs.configure(bg="#1e90ff")
 loga_augstums = logs.winfo_screenheight()
 loga_platums = logs.winfo_screenwidth()
-
 canvas = tk.Canvas(logs, bg="#1e90ff")
 canvas.pack(fill=tk.BOTH, expand=True)
-
 projekta_ceļš = os.path.join(os.path.expanduser("~"), "Documents","Skolas_Zvans","Proj")
 os.chdir(projekta_ceļš)
 Mina = tkFont.Font(family="Mina", size=20)
@@ -29,9 +23,12 @@ pygame.mixer.init()
 with open('dati.json', 'r') as file:
     data = json.load(file)
 
-dienas_sākums = data.get("dienas_sakums", "")
-dienas_beigas = data.get("dienas_beigas", "")
+laiks = data.get("dienas_sakums", "")
+with open('dienas_laiks.txt', "w") as file:
+    file.write(laiks)
+    
 
+dienas_beigas = data.get("dienas_beigas", "")
 with open('dienas_beigas.txt', "w") as file:
     file.write(dienas_beigas)
 
@@ -72,7 +69,7 @@ Kvadrāts1 = canvas.create_polygon(Kvadrāts1_koordinātes, fill="#e1ddbf", widt
 
 Kvadrāts2_koordinātes = [(0, 0), (loga_platums * 0.2, 0), (loga_platums * 0.2, loga_augstums * 0.15), (0, loga_augstums * 0.15)]
 Kvadrāts2 = canvas.create_polygon(Kvadrāts2_koordinātes, fill="#5983bb")
-canvas.create_text(loga_platums * 0.1, loga_augstums * 0.075, text=dienas_sākums, font=(Mina, 50), fill="white")
+canvas.create_text(loga_platums * 0.1, loga_augstums * 0.075, text=laiks, font=(Mina, 50), fill="white")
 
 cilveki_att = lādē("uz_skolu.png")
 cilveki_att = cilveki_att.resize((200, 200))
