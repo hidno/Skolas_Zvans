@@ -30,7 +30,9 @@ with open('dati.json', 'r') as file:
     data = json.load(file)
 
 dienas_sākums = data.get("dienas_sakums", "")
-
+laiks = data.get("dienas_sakums", "")
+with open('dienas_laiks.txt', "w") as file:
+    file.write(laiks)
 
 
 
