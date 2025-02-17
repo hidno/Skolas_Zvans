@@ -11,11 +11,11 @@ import os, json, subprocess, pygame
 logs = tk.Tk()
 logs.title("Skolas Zvans")
 logs.state('zoomed')  
-logs.configure(bg="#1e90ff")
+logs.configure(bg="#4682b4")
 loga_augstums = logs.winfo_screenheight()
 loga_platums = logs.winfo_screenwidth()
 
-canvas = tk.Canvas(logs, bg="#1e90ff")
+canvas = tk.Canvas(logs, bg="#4682b4")
 canvas.pack(fill=tk.BOTH, expand=True)
 
 projekta_ceļš = os.path.join(os.path.expanduser("~"), "Documents","Skolas_Zvans","Proj")

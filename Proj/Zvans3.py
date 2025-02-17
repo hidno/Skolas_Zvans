@@ -148,7 +148,7 @@ def next(event):
             logs.update()
         else:
             pass
-        subprocess.Popen(['python', 'Zvans4.py'])
+        subprocess.Popen(['python', 'Zvans.py'])
         logs.withdraw() 
 
 
