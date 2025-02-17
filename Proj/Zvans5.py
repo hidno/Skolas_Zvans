@@ -63,6 +63,14 @@ if dienas_tips == "Piektdiena":
     with open('dienas_beigas.txt', "w") as file:
         file.write(dienas_beigas)
 
+elif dienas_tips == "Pirmssvētku Diena":
+    stundu_intervāls = stundu_intervāls - 10 
+    dienas_beigas = dienas_beigas - timedelta(minutes=starbrīžu_garums)  
+    dienas_beigas = dienas_beigas.strftime(laika_formāts)
+
+    with open('dienas_beigas.txt', "w") as file:
+        file.write(dienas_beigas) 
+
 
 
 
