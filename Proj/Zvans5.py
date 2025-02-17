@@ -18,7 +18,7 @@ loga_platums = logs.winfo_screenwidth()
 canvas = tk.Canvas(logs, bg="#1e90ff")
 canvas.pack(fill=tk.BOTH, expand=True)
 
-projekta_ceļš = os.path.join(os.path.expanduser("~"), "Documents","Proj","Skolas_Zvans","Proj")
+projekta_ceļš = os.path.join(os.path.expanduser("~"), "Documents","Skolas_Zvans","Proj")
 os.chdir(projekta_ceļš)
 Mina = tkFont.Font(family="Mina", size=20)
 pygame.mixer.init()
