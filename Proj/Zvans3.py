@@ -105,43 +105,51 @@ if laiks:
 with open('dienas_laiks.txt', 'r') as file:
     laiks = file.read()
 
+
+
 def next(event):
     laiks_n = datetime.strptime(laiks, laika_formāts)
     dienas_beigas_n = datetime.strptime(dienas_beigas, laika_formāts)
     maiņa = datetime.strptime("15:30", "%H:%M")
     if laiks_n >= dienas_beigas_n:
-        zvans_att = lādē("Zvans.png")
-        zvans_att = zvans_att.resize((800, 800))  
-        zvans_tk = ImageTk.PhotoImage(zvans_att)
-        canvas.create_image(loga_platums// 2, loga_augstums// 2, image=zvans_tk)
-        logs.update()
-        pygame.mixer.music.load("Zvana_Audio.mp3")
-        pygame.mixer.music.play()
-        
+        if dienas_tips in ["Parasta Diena", "Piektdiena", "Pirmssvētku Diena"]:
+            zvans_att = lādē("Zvans.png")
+            zvans_att = zvans_att.resize((800, 800))  
+            zvans_tk = ImageTk.PhotoImage(zvans_att)
+            canvas.create_image(loga_platums// 2, loga_augstums// 2, image=zvans_tk)
+            pygame.mixer.music.load("Zvana_Audio.mp3")
+            pygame.mixer.music.play()
+            logs.update()
+        else:
+            pass
         subprocess.Popen(['python', 'Skolas_Zvans.py'])
         logs.withdraw()
     elif laiks_n < maiņa:
-        zvans_att = lādē("Zvans.png")
-        zvans_att = zvans_att.resize((800, 800))  
-        zvans_tk = ImageTk.PhotoImage(zvans_att)
-        canvas.create_image(loga_platums// 2, loga_augstums// 2, image=zvans_tk)
-        logs.update()
-        pygame.mixer.music.load("Zvana_Audio.mp3")
-        pygame.mixer.music.play()
-        
+        if dienas_tips in ["Parasta Diena", "Piektdiena", "Pirmssvētku Diena"]:
+            zvans_att = lādē("Zvans.png")
+            zvans_att = zvans_att.resize((800, 800))  
+            zvans_tk = ImageTk.PhotoImage(zvans_att)
+            canvas.create_image(loga_platums// 2, loga_augstums// 2, image=zvans_tk)
+            pygame.mixer.music.load("Zvana_Audio.mp3")
+            pygame.mixer.music.play()
+            logs.update()
+        else:
+            pass
         subprocess.Popen(['python', 'Zvans3.py'])
         logs.withdraw()
     else:
-        zvans_att = lādē("Zvans.png")
-        zvans_att = zvans_att.resize((800, 800))  
-        zvans_tk = ImageTk.PhotoImage(zvans_att)
-        canvas.create_image(loga_platums// 2, loga_augstums// 2, image=zvans_tk)
-        logs.update()
-        pygame.mixer.music.load("Zvana_Audio.mp3")
-        pygame.mixer.music.play()
-        
+        if dienas_tips in ["Parasta Diena", "Piektdiena", "Pirmssvētku Diena"]:
+            zvans_att = lādē("Zvans.png")
+            zvans_att = zvans_att.resize((800, 800))  
+            zvans_tk = ImageTk.PhotoImage(zvans_att)
+            canvas.create_image(loga_platums// 2, loga_augstums// 2, image=zvans_tk)
+            pygame.mixer.music.load("Zvana_Audio.mp3")
+            pygame.mixer.music.play()
+            logs.update()
+        else:
+            pass
         subprocess.Popen(['python', 'Zvans4.py'])
-        logs.withdraw()
+        logs.withdraw() 
 
 
 
@@ -162,10 +170,13 @@ Kvadrāts2_koordinātes = [(0, 0), (loga_platums * 0.2, 0), (loga_platums * 0.2,
 Kvadrāts2 = canvas.create_polygon(Kvadrāts2_koordinātes, fill="#8ea2b1")
 canvas.create_text(loga_platums * 0.1, loga_augstums * 0.075, text=laiks, font=(Mina, 50), fill="white")
 
-cilveki_att = lādē("pauze.png")
-cilveki_att = cilveki_att.resize((422, 240))
-cilveki_att_tk = ImageTk.PhotoImage(cilveki_att)
-canvas.create_image((loga_platums-422)//2, loga_augstums*0.8 -240, image=cilveki_att_tk, anchor=tk.NW)
+if dienas_tips in ["Parasta Diena", "Piektdiena", "Pirmssvētku Diena"]:
+    cilveki_att = lādē("pauze.png")
+    cilveki_att = cilveki_att.resize((422, 240))
+    cilveki_att_tk = ImageTk.PhotoImage(cilveki_att)
+    canvas.create_image((loga_platums-422)//2, loga_augstums*0.8 -240, image=cilveki_att_tk, anchor=tk.NW)
+else:
+    pass
 
 Turpināt_koordinātes = [(loga_platums * 0.75, loga_augstums*0.725), (loga_platums* 0.95, loga_augstums*0.725), (loga_platums*0.95,loga_augstums* 0.875), (loga_platums *0.75, loga_augstums* 0.875)]
 Turpināt_poga = canvas.create_polygon(Turpināt_koordinātes, fill="#7A2222")

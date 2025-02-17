@@ -109,27 +109,31 @@ def next(event):
     laiks_n = datetime.strptime(laiks, laika_formāts)
     dienas_beigas_n = datetime.strptime(dienas_beigas, laika_formāts)
     if laiks_n >= dienas_beigas_n:
-        zvans_att = lādē("Zvans.png")
-        zvans_att = zvans_att.resize((800, 800))  
-        zvans_tk = ImageTk.PhotoImage(zvans_att)
-        canvas.create_image(loga_platums// 2, loga_augstums// 2, image=zvans_tk)
-        logs.update()
-        pygame.mixer.music.load("Zvana_Audio.mp3")
-        pygame.mixer.music.play()
-        
+        if dienas_tips in ["Parasta Diena", "Piektdiena", "Pirmssvētku Diena"]:
+            zvans_att = lādē("Zvans.png")
+            zvans_att = zvans_att.resize((800, 800))  
+            zvans_tk = ImageTk.PhotoImage(zvans_att)
+            canvas.create_image(loga_platums// 2, loga_augstums// 2, image=zvans_tk)
+            pygame.mixer.music.load("Zvana_Audio.mp3")
+            pygame.mixer.music.play()
+            logs.update()
+        else:
+            pass
         subprocess.Popen(['python', 'Skolas_Zvans.py'])
         logs.withdraw()
     else:
-        zvans_att = lādē("Zvans.png")
-        zvans_att = zvans_att.resize((800, 800))  
-        zvans_tk = ImageTk.PhotoImage(zvans_att)
-        canvas.create_image(loga_platums// 2, loga_augstums// 2, image=zvans_tk)
-        logs.update()
-        pygame.mixer.music.load("Zvana_Audio.mp3")
-        pygame.mixer.music.play()
-        
+        if dienas_tips in ["Parasta Diena", "Piektdiena", "Pirmssvētku Diena"]:
+            zvans_att = lādē("Zvans.png")
+            zvans_att = zvans_att.resize((800, 800))  
+            zvans_tk = ImageTk.PhotoImage(zvans_att)
+            canvas.create_image(loga_platums// 2, loga_augstums// 2, image=zvans_tk)
+            pygame.mixer.music.load("Zvana_Audio.mp3")
+            pygame.mixer.music.play()
+            logs.update()
+        else:
+            pass
         subprocess.Popen(['python', 'Zvans5.py'])
-        logs.withdraw()
+        logs.withdraw() 
 
 
 
